@@ -24,6 +24,20 @@ class ViewController: UIViewController {
     }
     
     @IBAction func showActionSheet(_ sender: UIButton) {
+        let alert = UIAlertController(title: nil, message: "Choose film", preferredStyle: .actionSheet)
+        
+        let handler : (UIAlertAction) -> Void = { action in
+            print(sender.titleLabel?.text ?? "Oops!")
+        }
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: handler)
+        alert.addAction(cancelAction)
+        let film1 = UIAlertAction(title: "SpiderMan", style: .default, handler: handler)
+        alert.addAction(film1)
+        let film2 = UIAlertAction(title: "Alladin", style: .default, handler: handler)
+        alert.addAction(film2)
+        
+        present(alert, animated: true, completion: nil)
     }
     
 }
