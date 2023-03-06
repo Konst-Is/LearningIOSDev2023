@@ -36,6 +36,8 @@ class ViewController: UIViewController {
         alert.addAction(film1)
         let film2 = UIAlertAction(title: "Alladin", style: .default, handler: handler)
         alert.addAction(film2)
+        let film3 = UIAlertAction(title: "Mask", style: .default, handler: handler)
+        alert.addAction(film3)
         
         present(alert, animated: true, completion: nil)
     }
