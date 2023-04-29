@@ -23,8 +23,8 @@ class CoursesViewController: UIViewController {
     }
     
     func fetchData() {
-        //let jsonUrlString = "https://swiftbook.ru//wp-content/uploads/api/api_course" // По этому адресу запрашиваем json c одybv словарtv, по второму - массив словарей, третий json с именем и описанием сайта, четвертый - битый json, аналогичный 3-му варианту
-        let jsonUrlString = "https://swiftbook.ru//wp-content/uploads/api/api_courses"
+        //let jsonUrlString = "https://swiftbook.ru//wp-content/uploads/api/api_course" // По этому адресу запрашиваем json c одним словарем, по второму - массив словарей, третий json с именем и описанием сайта, четвертый - битый json, аналогичный 3-му варианту
+        let jsonUrlString = "https://swiftbook.ru//wp-content/uploads/api/api_courses" // Скачиваем массив словарей
         //let jsonUrlString = "https://swiftbook.ru//wp-content/uploads/api/api_website_description"
         //let jsonUrlString = "https://swiftbook.ru//wp-content/uploads/api/api_missing_or_wrong_fields"
         guard let url = URL(string: jsonUrlString) else { return }
@@ -32,9 +32,9 @@ class CoursesViewController: UIViewController {
             guard let data = data else { return }
             do {
                 let decoder = JSONDecoder()
-                // Это св-во позволяет изменять поля на другие, чем в json
+                // Это св-во позволяет изменять поля на другие названия, чем в json
                 decoder.keyDecodingStrategy = .convertFromSnakeCase
-                //let course = try JSONDecoder().decode(Course.self, from: data)
+                //let course = try JSONDecoder().decode(Course.self, from: data) // Для первого варианта
                 self.courses = try JSONDecoder().decode([Course].self, from: data)
                 //let websiteDescription = try JSONDecoder().decode(WebsiteDescription.self, from: data)
                 DispatchQueue.main.async {

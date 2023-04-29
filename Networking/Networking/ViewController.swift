@@ -20,7 +20,7 @@ class ViewController: UIViewController {
             guard let response = response, let data = data else { return }
             
             print(response)
-            print(data)
+            //print(data)
             
             do {
                 let json = try JSONSerialization.jsonObject(with: data, options: [])
