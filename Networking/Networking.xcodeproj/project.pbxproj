@@ -12,12 +12,14 @@
 		A8255C8421410AFA0074F6D0 /* CoursesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8255C8321410AFA0074F6D0 /* CoursesViewController.swift */; };
 		A8255C8621410DFE0074F6D0 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8255C8521410DFE0074F6D0 /* TableViewCell.swift */; };
 		A83C30212108401A00592AE4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A83C30202108401A00592AE4 /* AppDelegate.swift */; };
-		A83C30232108401A00592AE4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A83C30222108401A00592AE4 /* ViewController.swift */; };
 		A83C30262108401A00592AE4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A83C30242108401A00592AE4 /* Main.storyboard */; };
 		A83C30282108401B00592AE4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A83C30272108401B00592AE4 /* Assets.xcassets */; };
 		A83C302B2108401B00592AE4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A83C30292108401B00592AE4 /* LaunchScreen.storyboard */; };
 		B540452F29F9241000C87104 /* Course.swift in Sources */ = {isa = PBXBuildFile; fileRef = B540452E29F9241000C87104 /* Course.swift */; };
 		B540453129F9354100C87104 /* WebsiteDescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = B540453029F9354100C87104 /* WebsiteDescription.swift */; };
+		B540453329FD758F00C87104 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B540453229FD758F00C87104 /* MainViewController.swift */; };
+		B540453529FD75DE00C87104 /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B540453429FD75DE00C87104 /* CollectionViewCell.swift */; };
+		B540453729FD83E100C87104 /* Network Manager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B540453629FD83E100C87104 /* Network Manager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,13 +29,15 @@
 		A8255C8521410DFE0074F6D0 /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 		A83C301D2108401A00592AE4 /* Networking.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Networking.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A83C30202108401A00592AE4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		A83C30222108401A00592AE4 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		A83C30252108401A00592AE4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		A83C30272108401B00592AE4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A83C302A2108401B00592AE4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A83C302C2108401B00592AE4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B540452E29F9241000C87104 /* Course.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Course.swift; sourceTree = "<group>"; };
 		B540453029F9354100C87104 /* WebsiteDescription.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebsiteDescription.swift; sourceTree = "<group>"; };
+		B540453229FD758F00C87104 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		B540453429FD75DE00C87104 /* CollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
+		B540453629FD83E100C87104 /* Network Manager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Network Manager.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -50,7 +54,6 @@
 		A83C30142108401A00592AE4 = {
 			isa = PBXGroup;
 			children = (
-				B540453029F9354100C87104 /* WebsiteDescription.swift */,
 				A83C301F2108401A00592AE4 /* Networking */,
 				A83C301E2108401A00592AE4 /* Products */,
 			);
@@ -67,14 +70,17 @@
 		A83C301F2108401A00592AE4 /* Networking */ = {
 			isa = PBXGroup;
 			children = (
+				B540453629FD83E100C87104 /* Network Manager.swift */,
 				A83C30202108401A00592AE4 /* AppDelegate.swift */,
-				A83C30222108401A00592AE4 /* ViewController.swift */,
+				B540453029F9354100C87104 /* WebsiteDescription.swift */,
 				A806CF93210B4EA300574064 /* ImageViewController.swift */,
 				A8255C8321410AFA0074F6D0 /* CoursesViewController.swift */,
 				A8255C8521410DFE0074F6D0 /* TableViewCell.swift */,
 				A8255C7F214103450074F6D0 /* WebViewController.swift */,
 				B540452E29F9241000C87104 /* Course.swift */,
 				A83C30242108401A00592AE4 /* Main.storyboard */,
+				B540453229FD758F00C87104 /* MainViewController.swift */,
+				B540453429FD75DE00C87104 /* CollectionViewCell.swift */,
 				A83C30272108401B00592AE4 /* Assets.xcassets */,
 				A83C30292108401B00592AE4 /* LaunchScreen.storyboard */,
 				A83C302C2108401B00592AE4 /* Info.plist */,
@@ -153,12 +159,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A83C30232108401A00592AE4 /* ViewController.swift in Sources */,
+				B540453529FD75DE00C87104 /* CollectionViewCell.swift in Sources */,
 				B540452F29F9241000C87104 /* Course.swift in Sources */,
 				B540453129F9354100C87104 /* WebsiteDescription.swift in Sources */,
 				A806CF94210B4EA300574064 /* ImageViewController.swift in Sources */,
 				A8255C80214103450074F6D0 /* WebViewController.swift in Sources */,
+				B540453729FD83E100C87104 /* Network Manager.swift in Sources */,
 				A83C30212108401A00592AE4 /* AppDelegate.swift in Sources */,
+				B540453329FD758F00C87104 /* MainViewController.swift in Sources */,
 				A8255C8621410DFE0074F6D0 /* TableViewCell.swift in Sources */,
 				A8255C8421410AFA0074F6D0 /* CoursesViewController.swift in Sources */,
 			);
