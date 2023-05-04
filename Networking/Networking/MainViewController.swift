@@ -19,18 +19,9 @@ enum Actions: String, CaseIterable {
 class MainViewController: UICollectionViewController {
     
     private let reuseIdentifier = "Cell"
-    
+    private let getAndPostUrl = "https://jsonplaceholder.typicode.com/posts"
+    private let uploadImage = "https: //api.imgur.com/3/image" // Изображение загружаем на сайт imgur.com, и там оно появится
     let actions = Actions.allCases
-    
-    override func viewDidLoad() {
-       super.viewDidLoad()
-
-       self.collectionView.delegate = self
-       self.collectionView.dataSource = self
-       self.collectionView.allowsSelection = true
-       //self.collectionView.allowsMultipleSelection = true
-
-    }
     
     // MARK: UICollectionViewDataSource
 
@@ -49,20 +40,18 @@ class MainViewController: UICollectionViewController {
     // MARK: UICollectionViewDelegate
 
     override func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
-        print(indexPath.item)
         let action = actions[indexPath.item]
-        print(action.rawValue)
         switch action {
         case .downloadImage:
             performSegue(withIdentifier: "ShowImage", sender: self)
         case .get:
-            NetworkManager.getRequest(url: "https://jsonplaceholder.typicode.com/posts")
+            NetworkManager.getRequest(url: getAndPostUrl)
         case .post:
-            NetworkManager.postRequest(url: "https://jsonplaceholder.typicode.com/posts")
+            NetworkManager.postRequest(url: getAndPostUrl)
         case .ourCourses:
             performSegue(withIdentifier: "OurCourses", sender: self)
         case .uploadImage:
-            print("Upload Image")
+            NetworkManager.uploadImage(url: uploadImage)
         }
     }
 }

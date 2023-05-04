@@ -20,6 +20,7 @@
 		B540453329FD758F00C87104 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B540453229FD758F00C87104 /* MainViewController.swift */; };
 		B540453529FD75DE00C87104 /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B540453429FD75DE00C87104 /* CollectionViewCell.swift */; };
 		B540453729FD83E100C87104 /* Network Manager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B540453629FD83E100C87104 /* Network Manager.swift */; };
+		B543191C2A03A633008BB5FA /* ImageProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = B543191B2A03A633008BB5FA /* ImageProperties.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +39,7 @@
 		B540453229FD758F00C87104 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		B540453429FD75DE00C87104 /* CollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
 		B540453629FD83E100C87104 /* Network Manager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Network Manager.swift"; sourceTree = "<group>"; };
+		B543191B2A03A633008BB5FA /* ImageProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageProperties.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,6 +84,7 @@
 				B540453229FD758F00C87104 /* MainViewController.swift */,
 				B540453429FD75DE00C87104 /* CollectionViewCell.swift */,
 				A83C30272108401B00592AE4 /* Assets.xcassets */,
+				B543191B2A03A633008BB5FA /* ImageProperties.swift */,
 				A83C30292108401B00592AE4 /* LaunchScreen.storyboard */,
 				A83C302C2108401B00592AE4 /* Info.plist */,
 			);
@@ -159,6 +162,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B543191C2A03A633008BB5FA /* ImageProperties.swift in Sources */,
 				B540453529FD75DE00C87104 /* CollectionViewCell.swift in Sources */,
 				B540452F29F9241000C87104 /* Course.swift in Sources */,
 				B540453129F9354100C87104 /* WebsiteDescription.swift in Sources */,
