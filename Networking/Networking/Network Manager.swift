@@ -95,22 +95,26 @@ class NetworkManager {
         }.resume()
     }
     
-    static func uploadImage(url: String) {
-        let image = UIImage(named: "Piramida2")!
-        let httpHeaders = ["Authorization": "Client ID 1bd22b9ce396a4c"] // Взято из API сайта imgur
-        guard let imageProperties = ImageProperties(withImage: image, forKey: "image") else { return }
-        guard let url = URL(string: url) else { return }
+    static func uploadImage(url: String) { // Метод, загружающий картинку из Assets на сайт (у нас - imgur)
+        let image = UIImage(named: "Piramida2")! // Это картинка, которую я перетянул в Assets
+        let httpHeaders = ["Authorization": "Client-ID 1bd22b9ce396a4c"] // Параметры для авторизации на сайте imgur. Для получения Client ID нужно сначала зарегистрировать там свое приложение. Без этого сайт не примет картинку.
+        guard let imageProperties = ImageProperties(withImage: image, forKey: "image") else { return } // Создаю экземпляр для отправки на сервер imgur, это опционал
+        guard let url = URL(string: url) else {
+            print("url ivalid")
+            return
+        }
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
-        request.allHTTPHeaderFields = httpHeaders
-        request.httpBody = imageProperties.data
+        request.allHTTPHeaderFields = httpHeaders // С помощью этого метода мы передаем на сервер параметры авторизации
+        request.httpBody = imageProperties.data // Передаю в тело запроса наше изображение
+        print(request)
         URLSession.shared.dataTask(with: request) { (data, response, error) in
             if let response = response {
                 print(response)
             }
             if let data = data {
                 do {
-                    let json = try JSONSerialization.jsonObject(with: data)
+                    let json = try JSONSerialization.jsonObject(with: data) // Преобразую данные, которые возвращает сервер, в json. В нем много информации и должна быть ссылка на изображение link на сайте imgur
                     print(json)
                 } catch {
                     print(error)

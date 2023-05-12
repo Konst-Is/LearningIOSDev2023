@@ -14,6 +14,7 @@ enum Actions: String, CaseIterable {
     case post = "POST"
     case ourCourses = "Our Courses"
     case uploadImage = "Upload Image"
+    case downloadFile = "Download File"
 }
 
 class MainViewController: UICollectionViewController {
@@ -29,6 +30,7 @@ class MainViewController: UICollectionViewController {
         return actions.count
     }
 
+    // Заполняет кнопки текстами
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! CollectionViewCell
     
@@ -39,10 +41,11 @@ class MainViewController: UICollectionViewController {
 
     // MARK: UICollectionViewDelegate
 
-    override func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
+    // Обрабатывает нажатия на кнопки, запуская соответствующий метод.
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let action = actions[indexPath.item]
         switch action {
-        case .downloadImage:
+        case .downloadImage: // Переход на новый экран и загрузка изображения
             performSegue(withIdentifier: "ShowImage", sender: self)
         case .get:
             NetworkManager.getRequest(url: getAndPostUrl)
@@ -50,8 +53,12 @@ class MainViewController: UICollectionViewController {
             NetworkManager.postRequest(url: getAndPostUrl)
         case .ourCourses:
             performSegue(withIdentifier: "OurCourses", sender: self)
-        case .uploadImage:
+        case .uploadImage: // Загрузка изображения из Assets на сервер imgur.com
+            print("Upload Image")
             NetworkManager.uploadImage(url: uploadImage)
+        case .downloadFile: // Загрузка большого файла с сервера в фоновом режиме
+            print(Actions.downloadFile.rawValue)
+            
         }
     }
 }

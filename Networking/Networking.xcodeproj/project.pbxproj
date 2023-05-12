@@ -21,6 +21,7 @@
 		B540453529FD75DE00C87104 /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B540453429FD75DE00C87104 /* CollectionViewCell.swift */; };
 		B540453729FD83E100C87104 /* Network Manager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B540453629FD83E100C87104 /* Network Manager.swift */; };
 		B543191C2A03A633008BB5FA /* ImageProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = B543191B2A03A633008BB5FA /* ImageProperties.swift */; };
+		B543191E2A03D9A8008BB5FA /* DataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = B543191D2A03D9A8008BB5FA /* DataProvider.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +41,7 @@
 		B540453429FD75DE00C87104 /* CollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
 		B540453629FD83E100C87104 /* Network Manager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Network Manager.swift"; sourceTree = "<group>"; };
 		B543191B2A03A633008BB5FA /* ImageProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageProperties.swift; sourceTree = "<group>"; };
+		B543191D2A03D9A8008BB5FA /* DataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataProvider.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,6 +79,7 @@
 				B540453029F9354100C87104 /* WebsiteDescription.swift */,
 				A806CF93210B4EA300574064 /* ImageViewController.swift */,
 				A8255C8321410AFA0074F6D0 /* CoursesViewController.swift */,
+				B543191D2A03D9A8008BB5FA /* DataProvider.swift */,
 				A8255C8521410DFE0074F6D0 /* TableViewCell.swift */,
 				A8255C7F214103450074F6D0 /* WebViewController.swift */,
 				B540452E29F9241000C87104 /* Course.swift */,
@@ -168,6 +171,7 @@
 				B540453129F9354100C87104 /* WebsiteDescription.swift in Sources */,
 				A806CF94210B4EA300574064 /* ImageViewController.swift in Sources */,
 				A8255C80214103450074F6D0 /* WebViewController.swift in Sources */,
+				B543191E2A03D9A8008BB5FA /* DataProvider.swift in Sources */,
 				B540453729FD83E100C87104 /* Network Manager.swift in Sources */,
 				A83C30212108401A00592AE4 /* AppDelegate.swift in Sources */,
 				B540453329FD758F00C87104 /* MainViewController.swift in Sources */,

@@ -12,8 +12,13 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
-
+    
+    var bgSessionCompletionHandler: (() -> ())? // Для хранения захваченного значения из параметра completionHandler (сообщение с идентификатором сессии, вызывающей запуск приложения). При запуске приложения снова создается сессия для фоновой загрузки данных
+    
+    func application(_ application: UIApplication, handleEventsForBackgroundURLSession identifier: String, completionHandler: @escaping () -> Void) {
+        bgSessionCompletionHandler = completionHandler // Сохраняем захваченное значение в свойстве класса
+    }
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         return true
