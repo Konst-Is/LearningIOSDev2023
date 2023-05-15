@@ -24,7 +24,7 @@ class DataProvider: NSObject {
     }()
     
     func startDownload() { // Метод начала загрузки
-        if let url = URL(string: "https://speed.hetzner.de/100MB.bin") { // Ссылка, откуда мы будем скачивать файл
+        if let url = URL(string: "https://speedtest.selectel.ru/100MB") { // Ссылка, откуда мы будем скачивать файл
             downloadTask = bgSession.downloadTask(with: url) // Здесь будет создан экземпляр URLSession
             downloadTask.earliestBeginDate = Date().addingTimeInterval(3) // Загрузка начнется не ранее, чем через 3 сек после создания задачи
             downloadTask.countOfBytesClientExpectsToSend = 512 // Указываю верхнюю границу числа байтов
@@ -63,7 +63,7 @@ extension DataProvider: URLSessionDownloadDelegate {
     func urlSession(_ session: URLSession, downloadTask: URLSessionDownloadTask, didWriteData bytesWritten: Int64, totalBytesWritten: Int64, totalBytesExpectedToWrite: Int64) { // Отображение хода выполнения загрузки
         
         guard totalBytesExpectedToWrite != NSURLSessionTransferSizeUnknown else { return }
-        let progress = Double(totalBytesWritten / totalBytesExpectedToWrite)
+        let progress = Double(totalBytesWritten) / Double(totalBytesExpectedToWrite)
         print("Download progress: \(progress)")
         
         DispatchQueue.main.async {
