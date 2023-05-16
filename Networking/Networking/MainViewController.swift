@@ -7,9 +7,8 @@
 //
 
 import UIKit
-import UserNotifications
-
-enum Actions: String, CaseIterable {
+import UserNotifications // Для отправки push-уведомления об окончании загрузки в фоновом режиме. В настройках проекта в Capabilities нужно добавить Background Modes
+enum Actions: String, CaseIterable { // Названия кнопок
     case downloadImage = "Download Image"
     case get = "GET"
     case post = "POST"
@@ -18,19 +17,18 @@ enum Actions: String, CaseIterable {
     case downloadFile = "Download File"
 }
 
-class MainViewController: UICollectionViewController {
+class MainViewController: UICollectionViewController { // Управляет интерфейсом экрана с кнопками. Кнопки помещены в CollectionView
     
     private let reuseIdentifier = "Cell"
-    private let getAndPostUrl = "https://jsonplaceholder.typicode.com/posts"
-    private let uploadImage = "https: //api.imgur.com/3/image" // Изображение загружаем на сайт imgur.com, и там оно появится
+    private let getAndPostUrl = "https://jsonplaceholder.typicode.com/posts" // Запросы отправляем на учебный сайт jsonplaceholder
+    private let uploadImage = "https: //api.imgur.com/3/image" // Наше изображение загружаем на сайт imgur.com (учебный, но я там не зарегистрировался. Этот метод не работает)
     let actions = Actions.allCases
     private var alert: UIAlertController!
     private let dataProvider = DataProvider()
     private var filePath: String? // Сюда сохраняем временную ссылку на файл при повторном запуске приложения
     
-    override func viewDidLoad() { // Когда загрузка большого файла завершиться, автоматически запустится приложение и вызовется viewDidLoad()
+    override func viewDidLoad() { // Когда загрузка большого файла завершится, автоматически запустится приложение и вызовется viewDidLoad(). Здесь мы при первом запуске приложения предложим юзеру подтвердить, что он согласен получать push-уведомления. После загрузки файла и повторном запуске приложения в консоль выведется сообщение и путь к файлу. Путь будет сохранён в свойстве filePath. Alert убираем с экрана. Отправляем push-уведомление.
         super.viewDidLoad()
-        // Сохранить файл для дальнейшего использования
         registerForNotification()
         dataProvider.fileLocation = { (location) in // Обращаемся к захваченному значению свойства fileLocation
             print("Download finished: \(location.absoluteString)")
@@ -40,20 +38,20 @@ class MainViewController: UICollectionViewController {
         }
     }
     
-    private func showAlert() {
+    private func showAlert() { // Настраивает отображение alert controller и UI элементов на нём
         alert = UIAlertController(title: "Downloading...", message: "0%", preferredStyle: .alert)
         
+        // Создаём констрейнт высоты alert controller равный 170 points, чтобы уместился индикатор активности и прогресс вью
         let height = NSLayoutConstraint(item: alert.view, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 0, constant: 170)
         alert.view.addConstraint(height)
         
         let cancelAction = UIAlertAction(title: "Cancel", style: .destructive) { action in
-            self.dataProvider.stopDownload()
+            self.dataProvider.stopDownload() // Отменяем загрузку
         }
-        
-        
         alert.addAction(cancelAction)
+        // В замыкании к методу present мы создаём activityIndicator и progressView
         present(alert, animated: true) { [self] in
-            let size = CGSize(width: 40, height: 40) // Размер ActivityIndicator
+            let size = CGSize(width: 40, height: 40) // Размер activityIndicator
             let point = CGPoint(x: self.alert.view.frame.width / 2 - size.width / 2, y: self.alert.view.frame.height / 2 - size.height / 2) // Координаты origin ActivityIndicator (вычисляем середину AlertController и от неё отступаем на половину ширины и высоты индикатора)
             let activityIndicator = UIActivityIndicatorView(frame: CGRect(origin: point, size: size))
             activityIndicator.color = .gray
@@ -63,8 +61,8 @@ class MainViewController: UICollectionViewController {
             progressView.tintColor = .blue
             
             self.dataProvider.onProgress = { (progress) in
-                progressView.progress = Float(progress)
-                self.alert.message = String(Int(progress * 100)) + "%"
+                progressView.progress = Float(progress) // Свойство progress отображает ход загрузки.
+                self.alert.message = String(Int(progress * 100)) + "%" // Свойство message отображает изменяющуюся информацию о загрузке в процентах, округляем до целых чисел
             }
             
             self.alert.view.addSubview(activityIndicator)
@@ -81,9 +79,7 @@ class MainViewController: UICollectionViewController {
     // Заполняет кнопки текстами
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! CollectionViewCell
-    
         cell.label.text = actions[indexPath.item].rawValue
-    
         return cell
     }
 
@@ -105,24 +101,23 @@ class MainViewController: UICollectionViewController {
             print("Upload Image")
             NetworkManager.uploadImage(url: uploadImage)
         case .downloadFile: // Загрузка большого файла с сервера в фоновом режиме
-            showAlert()
-            dataProvider.startDownload()
-            
+            showAlert() // появится alert controller с отображением загрузки
+            dataProvider.startDownload() // Обращаемся к экземпляру класса DataProvider и вызываем метод startDownload()
         }
     }
 }
 
-extension MainViewController {
+extension MainViewController { // Настройка push-уведомлений
     
-    private func registerForNotification() {
-        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound]) { in
+    private func registerForNotification() { // Запрос пользователю в виде alert на получение push-уведомлений
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound]) { _,_ in 
         }
     }
     
-    private func postNotification() {
+    private func postNotification() { // Создание push-уведомления
         let content = UNMutableNotificationContent() // Создал экземпляр контента
-        content.title = "Download complete!" // Заголовок
-        content.body = "Your background transfer has completed. File path: \(filePath!)" // Тело контента
+        content.title = "Download complete!" // Заголовок уведомления
+        content.body = "Your background transfer has completed. File path: \(filePath!)" // Тело контента уведомления
         let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 3, repeats: false) // Триггер, по которому будет срабатывать уведомление, 3 сек с момента загрузки файла
         let request = UNNotificationRequest(identifier: "TransferComplete", content: content, trigger: trigger) // Создаю запрос, присваиваю ему идентификатор, передаю контент и триггер
         UNUserNotificationCenter.current().add(request) // Запрос добавляю в центр нотификаций, и оно должно сработать

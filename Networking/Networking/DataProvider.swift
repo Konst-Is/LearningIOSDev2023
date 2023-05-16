@@ -63,11 +63,11 @@ extension DataProvider: URLSessionDownloadDelegate {
     func urlSession(_ session: URLSession, downloadTask: URLSessionDownloadTask, didWriteData bytesWritten: Int64, totalBytesWritten: Int64, totalBytesExpectedToWrite: Int64) { // Отображение хода выполнения загрузки
         
         guard totalBytesExpectedToWrite != NSURLSessionTransferSizeUnknown else { return }
-        let progress = Double(totalBytesWritten) / Double(totalBytesExpectedToWrite)
+        let progress = Double(totalBytesWritten) / Double(totalBytesExpectedToWrite) // Количество полученных байт делим на количество байт, которые мы должны получить
         print("Download progress: \(progress)")
         
         DispatchQueue.main.async {
-            self.onProgress?(progress)
+            self.onProgress?(progress) // Передаём в клоужер величину зарузки
         }
     }
 }
