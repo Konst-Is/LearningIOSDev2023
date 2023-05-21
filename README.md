@@ -2,5 +2,9 @@
 
 These apps have no practical value and are lessons in iOS development. 
 
-You can contact me by email at konst.is@mail.ru ❤️
+You can contact me by email at konst.is@mail.ru 
+
+Yours sincerely,
+
+Konstantin Isachenko ❤️
 
